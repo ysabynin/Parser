@@ -397,7 +397,9 @@ public class Parser {
     }
 
     public void yyerror(String error) {
-        System.out.println("Cannot parse current statement!");
+        System.out.println("Unexpected lexem: "+
+                String.format("%s(%d, %d, %d)", lexer.yytext(), lexer.yyline(), lexer.yycolumn(), lexer.yycolumn() + lexer.yytext().length() - 1)
+        );
     }
 
     public Parser(Reader r) {
