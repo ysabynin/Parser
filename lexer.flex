@@ -27,7 +27,8 @@ rbracket = ")"
 %%
 
 {not_num}	{
-		System.exit(0);
+		System.out.println(String.format("ERROR: unexpected lexem (%s, %d, %d, %d); ",lexer.yytext(),lexer.yyline(),lexer.yycolumn(),lexer.yycolumn() + lexer.yytext().length()-1));
+		System.exit(-1);
 }
 
 {comment} {
@@ -100,11 +101,14 @@ rbracket = ")"
  	return Parser.SEMICOLON;
  	}
 
-"\n" | "\r" | "\r\n" {}
+"\n" | "\r" | "\r\n" | "\t" {}
 
 {var} {
  	return Parser.VAR;
  	}
 
 
-[^]    {throw new Error("Unexpected lexem!");}
+[^]    {
+		System.out.println(String.format("ERROR: unexpected lexem (%s, %d, %d, %d); ",lexer.yytext(),lexer.yyline(),lexer.yycolumn(),lexer.yycolumn() + lexer.yytext().length()-1));
+		System.exit(-1);
+}
