@@ -1,3 +1,6 @@
+TYPE .\test\error.txt
+java -jar cyk.jar ./test/error.txt
+pause
 TYPE .\test\test1.txt
 java -jar cyk.jar ./test/test1.txt
 pause
